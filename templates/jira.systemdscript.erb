@@ -1,0 +1,13 @@
+[Unit]
+Description=Job that manages Jira
+Documentation=man:foo(1)
+
+[Service]
+Type=forking
+Environment="JAVA_HOME=<%= scope.lookupvar('jira::javahome') %>" "CATALINA_HOME=<%= scope.lookupvar('jira::webappdir') %>"
+ExecStart=<%= scope.lookupvar('jira::webappdir') %>/bin/start-jira.sh
+ExecStop=<%= scope.lookupvar('jira::webappdir') %>/bin/stop-jira.sh
+
+[Install]
+WantedBy=multi-user.target
+
